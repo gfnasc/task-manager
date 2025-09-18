@@ -42,13 +42,17 @@ function App() {
   }
 
   function addtask(title, description) {
-    const newTask = {
-      name: title,
-      description: description,
-      completed: false,
-      id: tasks.length + 1
+    if (!title || !description) {
+      return alert('Preencha os campos corretamente!')
+    } else {
+      const newTask = {
+        name: title,
+        description: description,
+        completed: false,
+        id: tasks.length + 1
+      }
+      setTasks([...tasks, newTask])
     }
-    setTasks([...tasks, newTask])
   }
 
   return (
