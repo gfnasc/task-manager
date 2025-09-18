@@ -42,7 +42,7 @@ function App() {
   }
 
   function addtask(title, description) {
-    if (!title || !description) {
+    if (!title.trim() || !description.trim()) {
       return alert('Preencha os campos corretamente!')
     } else {
       const newTask = {

@@ -4,7 +4,7 @@ function TasksList({ tasks, toggleTask, deleteTask }) {
   return (
     <ul className="space-y-4 p-6 bg-slate-200 rounded-md shadow">
       {tasks.length === 0 ? (
-        <p className="text-center text-gray-500">Não há tarefas a serem exibidas.</p>
+        <p className="text-center text-gray-500">There are no tasks to display.</p>
       ) : (
         tasks.map((task) => (
           <li key={task.id} className="flex gap-2">
