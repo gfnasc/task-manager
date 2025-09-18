@@ -1,7 +1,7 @@
 function TasksList() {
     return (
         <div>
-            <h1>Tasks</h1>
+            <h1 className="text-3xl font-bold">Tasks</h1>
         </div>
     )
 }
