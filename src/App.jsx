@@ -1,28 +1,10 @@
 import TasksList from "./components/TasksList.jsx";
 import AddTask from "./components/AddTask.jsx";
-import {useState} from "react";
+import { useState } from "react";
+import { v4 } from 'uuid'
 
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      name: "Task 1",
-      description: "Description for Task 1",
-      completed: false,
-      id: 1
-    },
-    {
-      name: "Task 2",
-      description: "Description for Task 2",
-      completed: true,
-      id: 2
-    },
-    {
-      name: "Task 3",
-      description: "Description for Task 2",
-      completed: true,
-      id: 3
-    }
-  ])
+  const [tasks, setTasks] = useState([])
 
   function toggleTask(taskId) {
     const newtasks = tasks.map((task) => {
@@ -43,13 +25,13 @@ function App() {
 
   function addtask(title, description) {
     if (!title.trim() || !description.trim()) {
-      return alert('Preencha os campos corretamente!')
+      return alert('Fill in the fields correctly!')
     } else {
       const newTask = {
         name: title,
         description: description,
         completed: false,
-        id: tasks.length + 1
+        id: v4()
       }
       setTasks([...tasks, newTask])
     }
@@ -58,7 +40,7 @@ function App() {
   return (
     <div className="w-screen h-screen bg-gray-800 p-6 flex">
       <div className="flex flex-col gap-5 w-[500px]">
-        <h1 className="text-3xl text-center text-slate-100 font-bold text-centetr">Gerenciador de Tarefas</h1>
+        <h1 className="text-3xl text-center text-slate-100 font-bold text-centetr">Task Manager</h1>
         <AddTask addTask={addtask} />
         <TasksList tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask} />
       </div>
