@@ -1,21 +1,30 @@
-import TasksList from "./components/TasksList.jsx";
-import AddTask from "./components/AddTask.jsx";
-import { useState } from "react";
+import TasksList from "./components/TasksList.jsx"
+import AddTask from "./components/AddTask.jsx"
+import { useState, useEffect } from "react"
 import { v4 } from 'uuid'
 
 function App() {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem('tasks')
+    if (savedTasks) {
+      return JSON.parse(savedTasks)
+    } else {
+      return []
+    }
+  })
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
 
   function toggleTask(taskId) {
-    const newtasks = tasks.map((task) => {
+    const newTasks = tasks.map((task) => {
       if (task.id === taskId) {
-        return { ...task,
-          completed: !task.completed
-        }
+        return { ...task, completed: !task.completed }
       }
       return task
     })
-    setTasks(newtasks)
+    setTasks(newTasks)
   }
 
   function deleteTask(taskId) {
